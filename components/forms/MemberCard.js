@@ -44,6 +44,7 @@ MemberCard.propTypes = {
     name: PropTypes.string,
     role: PropTypes.string,
     firebaseKey: PropTypes.string,
+    uid: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
 };

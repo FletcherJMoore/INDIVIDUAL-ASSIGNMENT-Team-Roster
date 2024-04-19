@@ -55,7 +55,7 @@ const updateMember = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// GET SINGLE BOOK
+// GET SINGLE MEMBER
 const getSingleMember = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/members/${firebaseKey}.json`, {
     method: 'GET',

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
@@ -15,6 +15,10 @@ function MemberForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
   const { user } = useAuth();
+
+  useEffect(() => {
+    if (obj.firebaseKey) setFormInput(obj);
+  }, [obj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,15 +45,15 @@ function MemberForm({ obj }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Player</h2>
+      <h2 className="text-black mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Player</h2>
 
       {/* TITLE INPUT  */}
       <FloatingLabel controlId="floatingInput1" label="Member Name" className="mb-3">
         <Form.Control
           type="text"
-          placeholder="Enter player name"
+          placeholder="Enter Player Name"
           name="name"
-          value={formInput.title}
+          value={formInput.name}
           onChange={handleChange}
           required
         />
@@ -70,10 +74,10 @@ function MemberForm({ obj }) {
       {/* PRICE INPUT  */}
       <FloatingLabel controlId="floatingInput3" label="Member Role" className="mb-3">
         <Form.Control
-          type="text"
+          type="role"
           placeholder="Player Position"
           name="role"
-          value={formInput.price}
+          value={formInput.role}
           onChange={handleChange}
           required
         />
